@@ -10,6 +10,9 @@
 (set-frame-font "JetBrainsMono Nerd Font Mono Medium 14" nil t)
 
 (setq project-mode-line 1)
+
+(which-key-mode 1) ;;documentation at https://github.com/justbur/emacs-which-key
+
 (use-package denote
   :ensure t
   :hook (dired-mode . denote-dired-mode)
@@ -25,9 +28,18 @@
 
   (denote-rename-buffer-mode 1))
 
+(use-package avy
+  :ensure
+  :bind
+  (("C-:" . avy-goto-char)
+   ("M-g w" . avy-goto-word-1)
+   ("M-g l" . avy-goto-line)))
+
+(use-package cider
+  :ensure t)
 
 
-;; packages to install: cider, denote, company, paredit, raindbown-delimiters
+;; packages to install: cider, company, paredit or smartparens, raindbown-delimiters
 
 ;; Do I need this?
 (custom-set-variables
@@ -35,7 +47,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(denote)))
+ '(package-selected-packages '(avy cider denote)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
