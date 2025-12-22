@@ -21,3 +21,6 @@ dist/
 projects
 eln-cache/
 elpa/
+ielm-history.eld
+tramp
+transient/
