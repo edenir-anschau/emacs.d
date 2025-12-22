@@ -9,6 +9,7 @@
 (load-theme 'modus-vivendi-tinted)
 (set-frame-font "JetBrainsMono Nerd Font Mono Medium 14" nil t)
 
+(setq project-mode-line 1)
 (use-package denote
   :ensure t
   :hook (dired-mode . denote-dired-mode)
