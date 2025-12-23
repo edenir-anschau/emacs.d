@@ -7,9 +7,10 @@
 (global-display-line-numbers-mode 1)
 
 (load-theme 'modus-vivendi-tinted)
-(set-frame-font "JetBrainsMono Nerd Font Mono Medium 14" nil t)
+(set-frame-font "JetBrainsMono Nerd Font Mono Medium 16" nil t)
 
 (setq project-mode-line 1)
+(setq tab-always-indent 'complete)
 
 (which-key-mode 1) ;;documentation at https://github.com/justbur/emacs-which-key
 
@@ -36,8 +37,29 @@
    ("M-g l" . avy-goto-line)))
 
 (use-package cider
+  :ensure t
+  :config
+  (setq cider-save-file-on-load t))
+
+(use-package smartparens
+  :ensure t
+  :config
+  (require 'smartparens-config))
+
+(add-hook 'cider-repl-mode-hook #'smartparens-strict-mode)
+(add-hook 'cider-mode-hook #'smartparens-strict-mode)
+(add-hook 'emacs-lisp-mode-hook #'smartparens-strict-mode)
+
+(use-package rainbow-delimiters
   :ensure t)
 
+(add-hook 'cider-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
+
+(use-package company
+  :ensure t)
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-auto-update-doc nil)
 
 ;; packages to install: cider, company, paredit or smartparens, raindbown-delimiters
 
@@ -47,7 +69,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(avy cider denote)))
+ '(package-selected-packages '(avy cider company denote rainbow-delimiters smartparens)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
