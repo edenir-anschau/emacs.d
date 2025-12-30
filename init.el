@@ -13,6 +13,8 @@
 (setq project-mode-line 1)
 (setq tab-always-indent 'complete)
 
+(fset 'yes-or-no-p 'y-or-n-p)
+
 (which-key-mode 1) ;;documentation at https://github.com/justbur/emacs-which-key
 
 (use-package denote
