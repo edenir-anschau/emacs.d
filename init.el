@@ -62,6 +62,10 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-auto-update-doc nil)
 
+(unless (package-installed-p 'dart-mode)
+  (package-refresh-contents)
+  (package-install 'dart-mode))
+
 ;; packages to install: cider, company, paredit or smartparens, raindbown-delimiters
 
 ;; Do I need this?
@@ -70,7 +74,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(avy cider company denote rainbow-delimiters smartparens)))
+ '(package-selected-packages
+   '(avy cider company dart-mode denote rainbow-delimiters smartparens)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
