@@ -1,6 +1,8 @@
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+             '("melpa" . "http://melpa.org/packages/") t)
+
+(package-initialize)
 
 (tool-bar-mode -1)
 (global-hl-line-mode 1)
@@ -17,8 +19,14 @@
 
 (which-key-mode 1) ;;documentation at https://github.com/justbur/emacs-which-key
 
+(use-package ledger-mode
+  :ensure t
+  :mode ("\\.ledger\\'" "\\.journal\\'"))
+
+;;(add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode))
+
 (use-package magit
-  :ensure)
+  :ensure t)
 
 (use-package denote
   :ensure t
@@ -79,9 +87,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes '(solarized-light))
+ '(custom-safe-themes
+   '("2b0fcc7cc9be4c09ec5c75405260a85e41691abb1ee28d29fcd5521e4fca575b"
+     default))
  '(package-selected-packages
-   '(avy cider company dart-mode denote magit rainbow-delimiters
-	 smartparens)))
+   '(avy cider company dart-mode denote ledger-mode magit
+	 rainbow-delimiters smartparens solarized-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
