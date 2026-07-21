@@ -10,7 +10,7 @@
 (setq auto-save-visited-file-name t)
 
 (load-theme 'modus-vivendi-tinted)
-(set-frame-font "JetBrainsMono Nerd Font Mono Medium 16" nil t)
+(set-frame-font "JetBrains Mono Medium 12" nil t)
 
 (setq project-mode-line 1)
 (setq tab-always-indent 'complete)
