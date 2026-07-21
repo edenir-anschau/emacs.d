@@ -28,75 +28,7 @@
 (use-package magit
   :ensure t)
 
-(use-package denote
-  :ensure t
-  :hook (dired-mode . denote-dired-mode)
-  :bind
-  (("C-c n n" . denote)
-   ("C-c n r" . denote-rename-file)
-   ("C-c n l" . denote-link)
-   ("C-c n b" . denote-backlinks)
-   ("C-c n d" . denote-dired)
-   ("C-c n g" . denote-grep))
-  :config
-  (setq denote-directory (expand-file-name "~/Documents/notes/"))
-
-  (denote-rename-buffer-mode 1))
-
-(use-package avy
-  :ensure
-  :bind
-  (("C-:" . avy-goto-char)
-   ("M-g w" . avy-goto-word-1)
-   ("M-g l" . avy-goto-line)))
-
-(use-package cider
-  :ensure t
-  :config
-  (setq cider-save-file-on-load t))
-
-(use-package smartparens
-  :ensure t
-  :config
-  (require 'smartparens-config))
-
-(add-hook 'cider-repl-mode-hook #'smartparens-strict-mode)
-(add-hook 'cider-mode-hook #'smartparens-strict-mode)
-(add-hook 'emacs-lisp-mode-hook #'smartparens-strict-mode)
-
-(use-package rainbow-delimiters
-  :ensure t)
-
-(add-hook 'cider-mode-hook #'rainbow-delimiters-mode)
-(add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
-
 (use-package company
   :ensure t)
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-auto-update-doc nil)
-
-(unless (package-installed-p 'dart-mode)
-  (package-refresh-contents)
-  (package-install 'dart-mode))
-
-;; packages to install: cider, company, paredit or smartparens, raindbown-delimiters
-
-;; Do I need this?
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(solarized-light))
- '(custom-safe-themes
-   '("2b0fcc7cc9be4c09ec5c75405260a85e41691abb1ee28d29fcd5521e4fca575b"
-     default))
- '(package-selected-packages
-   '(avy cider company dart-mode denote ledger-mode magit
-	 rainbow-delimiters smartparens solarized-theme)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
