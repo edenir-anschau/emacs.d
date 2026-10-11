@@ -25,6 +25,9 @@
 (which-key-mode 1)
 
 ;; Editing
+(global-set-key (kbd "C-c e") #'end-of-buffer)
+(global-set-key (kbd "C-c a") #'beginning-of-buffer)
+
 (setq tab-always-indent 'complete
       use-short-answers t)
 ;; Auto-save writes directly to the visited file.
@@ -35,7 +38,7 @@
 (setq org-capture-templates
       '(("n" "Quick Note" entry
          (file "~/org/inbox.org")
-         "* %^{Título}\n:PROPERTIES:\n:CREATED: %U\n:END:\n\n%?\n"
+         "* %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n\n"
          :empty-lines 1)))
 (global-set-key (kbd "C-c c") #'org-capture)
 
