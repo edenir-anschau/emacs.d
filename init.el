@@ -4,6 +4,10 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 
+(use-package try
+  :ensure t
+  :commands try)
+
 ;; Prefer the latest stable Org release from GNU ELPA over bundled Org.
 (use-package org
   :ensure t
