@@ -3,6 +3,24 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory (file-truename "~/org/roam"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ;; Dailies
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  ;; If you're using a vertical completion framework, you might want a more informative completion interface
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode)
+  ;; If using org-roam-protocol
+  (require 'org-roam-protocol))
+
 ;; Emacs activates installed packages before loading this file.
 (use-package company
   :ensure t
@@ -15,11 +33,14 @@
 (global-hl-line-mode 1)
 (global-display-line-numbers-mode 1)
 
-(load-theme 'modus-vivendi-tinted)
-;; An explicit height avoids inheriting terminal height 1 during daemon startup.
-(set-face-attribute 'default nil
-                    :font "JetBrains Mono Medium 12"
-                    :height 120)
+(load-theme 'catppuccin :no-confirm)
+;; Configure existing frames and defaults for future daemon client frames.
+;; Face heights are in tenths of a point: 140 means 14 pt.
+(dolist (frame '(nil t))
+  (set-face-attribute 'default frame
+                      :family "JetBrains Mono"
+                      :weight 'medium
+                      :height 140))
 
 (setq project-mode-line t)
 (which-key-mode 1)
@@ -69,3 +90,18 @@
 
 (add-hook 'org-capture-after-finalize-hook
           #'my/org-capture-delete-frame)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("c4df9006b9eb32599d758800a32f3487c2cdf13826084511783b47d419024af2"
+     default))
+ '(package-selected-packages '(catppuccin-theme company magit org-roam)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

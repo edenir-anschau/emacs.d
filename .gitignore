@@ -25,3 +25,8 @@ ielm-history.eld
 tramp
 transient/
 bookmarks
+
+# Org / org-roam generated state
+/.org-id-locations
+/org-roam.db
+/org-roam.db-*
