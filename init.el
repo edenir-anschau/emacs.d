@@ -1,7 +1,8 @@
 ;; Packages
 (require 'package)
+(require 'use-package)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 
 (use-package org-roam
   :ensure t
@@ -16,8 +17,10 @@
          ("C-c n j" . org-roam-dailies-capture-today))
   :config
   ;; If you're using a vertical completion framework, you might want a more informative completion interface
-  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-  (org-roam-db-autosync-mode)
+  (setq org-roam-node-display-template
+        (concat "${title:*} "
+                (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode 1)
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
 
@@ -33,7 +36,11 @@
 (global-hl-line-mode 1)
 (global-display-line-numbers-mode 1)
 
-(load-theme 'catppuccin :no-confirm)
+(use-package catppuccin-theme
+  :ensure t
+  :no-require t
+  :config
+  (load-theme 'catppuccin :no-confirm))
 ;; Configure existing frames and defaults for future daemon client frames.
 ;; Face heights are in tenths of a point: 140 means 14 pt.
 (dolist (frame '(nil t))
@@ -52,7 +59,7 @@
 (setq tab-always-indent 'complete
       use-short-answers t)
 ;; Auto-save writes directly to the visited file.
-(setq auto-save-visited-file-name t)
+(auto-save-visited-mode 1)
 
 ;; Org-capture
 (require 'org-capture)
