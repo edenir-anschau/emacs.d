@@ -10,7 +10,12 @@
 
 (use-package elfeed
   :ensure t
-  :bind ("C-x w" . elfeed))
+  :bind ("C-x w" . elfeed)
+  :custom
+  (elfeed-feeds
+   '("https://www.debian.org/News/news"
+     "https://news.ycombinator.com/rss"
+     "https://keepassxc.org/blog/index.xml")))
 
 (setq package-vc-allow-build-commands t)
 (use-package reader
@@ -78,6 +83,8 @@
 (which-key-mode 1)
 
 ;; Editing
+(electric-pair-mode 1)
+
 (global-set-key (kbd "C-c e") #'end-of-buffer)
 (global-set-key (kbd "C-c a") #'beginning-of-buffer)
 
