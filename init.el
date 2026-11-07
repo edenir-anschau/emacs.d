@@ -4,6 +4,18 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 
+;; Prefer the latest stable Org release from GNU ELPA over bundled Org.
+(use-package org
+  :ensure t
+  :pin gnu
+  :demand t
+  :init
+  ;; :ensure alone considers the built-in Org to be already installed.
+  (unless (assq 'org package-alist)
+    (package-refresh-contents)
+    (let ((package-install-upgrade-built-in t))
+      (package-install 'org))))
+
 (use-package org-roam
   :ensure t
   :custom
@@ -105,7 +117,7 @@
  '(custom-safe-themes
    '("c4df9006b9eb32599d758800a32f3487c2cdf13826084511783b47d419024af2"
      default))
- '(package-selected-packages '(catppuccin-theme company magit org-roam)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
